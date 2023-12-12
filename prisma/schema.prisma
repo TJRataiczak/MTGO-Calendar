@@ -13,6 +13,28 @@ datasource db {
 model Events {
     id Int @id @default(autoincrement())
     name String
+    format String
+    time Int
+    info EventInfo @relation(fields: [eventInfoId], references: [id])
+    eventInfoId Int
+}
+
+model ReoccuringEvents {
+    id Int @id @default(autoincrement())
+    name String
+    format String
     date String
     time Int
+    info EventInfo @relation(fields: [eventInfoId], references: [id])
+    eventInfoId Int
+}
+
+model EventInfo {
+    id Int @id @default(autoincrement())
+    type String
+    entry String
+    prizes String
+    description String
+    events Events[]
+    reoccuringEvents ReoccuringEvents[]
 }
