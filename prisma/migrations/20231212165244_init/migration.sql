@@ -22,6 +22,7 @@ CREATE TABLE "ReoccuringEvents" (
 -- CreateTable
 CREATE TABLE "EventInfo" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "type" TEXT NOT NULL,
     "entry" TEXT NOT NULL,
     "prizes" TEXT NOT NULL,
     "description" TEXT NOT NULL
