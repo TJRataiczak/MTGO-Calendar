@@ -1,7 +1,12 @@
 import Calendar from "~/components/Calendar";
+import Header from "~/components/Header";
 
-export default async function Home() {
+export default function Home() {
+  
   return(
-    <Calendar/>
+    <div>
+      <Header />
+      <Calendar />
+    </div>
   )
 }
