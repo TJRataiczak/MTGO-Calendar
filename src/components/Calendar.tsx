@@ -1,28 +1,22 @@
 'use client'
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
 import getEvents from './Test';
-import { useState, useEffect } from 'react';
 
-const Calendar = () => {
-
-    const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
-
-    useEffect(() => {
-      
-    },[timeZone])
+const Calendar = async () => {
     
-    let events = getEvents().then()
+    const events = await getEvents()
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    console.log(events)
-    console.log(timeZone)
+    console.log(timeZone);
 
     return (
         <div>
-            {events.map(event => 
-                <div key={event.time}>
-                    <div>{event.name}</div>
-                    <div>{event.format}</div>
-                </div>
+            {events.map((event) => 
+            <div key={event.time}>
+                <div>{event.format} {event.name}</div>
+                <div></div>
+            </div>
             )}
         </div>
     )

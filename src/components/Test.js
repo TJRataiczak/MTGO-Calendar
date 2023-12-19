@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
-async function getEvents(){
+function getEvents(){
     const prisma = new PrismaClient();
-    const events = await prisma.events.findMany({
+    const events = prisma.events.findMany({
         where: {
-            format: 'Modern'
+            format: 'Legacy'
         }}
-    );
+    )
 
     return events;
 }
