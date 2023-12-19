@@ -1,15 +1,30 @@
+'use client'
 import React from 'react'
-import { PrismaClient } from '@prisma/client'
-import TimeZone from './TimeZone';
+import getEvents from './Test';
+import { useState, useEffect } from 'react';
 
-const Calendar = async () => {
+const Calendar = () => {
+
+    const [timeZone, setTimeZone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
+
+    useEffect(() => {
+      
+    },[timeZone])
     
-    const prisma = new PrismaClient();
+    let events = getEvents().then()
 
-    const events = await prisma.events.findMany();
+    console.log(events)
+    console.log(timeZone)
 
     return (
-        <TimeZone events={events}/>
+        <div>
+            {events.map(event => 
+                <div key={event.time}>
+                    <div>{event.name}</div>
+                    <div>{event.format}</div>
+                </div>
+            )}
+        </div>
     )
 }
 
