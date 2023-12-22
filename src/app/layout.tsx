@@ -11,7 +11,8 @@ export const metadata = {
 
 async function getEvents(){
     const prisma = new PrismaClient();
-    return await prisma.events.findMany();
+    const newQuery = prisma.events.findMany();
+    return newQuery;
 }
 
 let events = await getEvents();

@@ -6,7 +6,7 @@ const Calendar = ({data}) => {
   return (
         data.map(event => 
             <div>
-            <div></div>
+            <div>Hello</div>
             <div>{event.name}</div>
             </div>)
     )
