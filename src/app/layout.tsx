@@ -21,7 +21,7 @@ async function getEvents(eventType){
 
       return await prisma.events.findMany({
         where: {
-          AND: [{time: { gte: currentDate.getTime()/1000}}, {time: { lte: twoWeeks/1000}}]
+          AND: [{time: { lte: twoWeeks/1000}}, {time: {gte: currentDate.getDate()/1000}}]
         }
       });
   }
