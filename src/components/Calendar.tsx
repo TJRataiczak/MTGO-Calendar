@@ -1,13 +1,11 @@
 
-const Calendar = ({data}) => {
-
-    console.log(data.map(event => event.name))
+const Calendar = ({scheduled, reoccuring}) => {
 
   return (
-        data.map(event => 
+        scheduled.map(event => 
             <div>
-            <div>Hello</div>
-            <div>{event.name}</div>
+                <div>{event.name}</div>
+                <div>{event.time}</div>
             </div>)
     )
 }

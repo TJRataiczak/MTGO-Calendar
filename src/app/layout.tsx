@@ -9,13 +9,31 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-async function getEvents(){
+async function getEvents(eventType){
     const prisma = new PrismaClient();
-    const newQuery = prisma.events.findMany();
-    return newQuery;
+
+    if (eventType === "Scheduled"){
+
+      let currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+      let twoWeeks = currentDate.setDate(currentDate.getDate() + 15);
+
+
+      return await prisma.events.findMany({
+        where: {
+          AND: [{time: { gte: currentDate.getTime()/1000}}, {time: { lte: twoWeeks/1000}}]
+        }
+      });
+  }
+    else if (eventType === "Reoccuring"){
+      return prisma.reoccuringEvents.findMany();
+    }
 }
 
-let events = await getEvents();
+let scheduledEvents = await getEvents('Scheduled');
+let reoccuringEvents = await getEvents('Reoccuring');
+
+console.log(scheduledEvents)
 
 export default function RootLayout({
   children,
@@ -26,7 +44,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header/>
-        <Calendar data={events}/>
+        <Calendar scheduled={scheduledEvents} reoccuring={reoccuringEvents}/>
         {children}
       </body>
     </html>
