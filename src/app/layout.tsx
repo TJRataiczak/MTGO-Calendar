@@ -33,8 +33,6 @@ async function getEvents(eventType){
 let scheduledEvents = await getEvents('Scheduled');
 let reoccuringEvents = await getEvents('Reoccuring');
 
-console.log(scheduledEvents)
-
 export default function RootLayout({
   children,
 }: {
